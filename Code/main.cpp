@@ -11,19 +11,18 @@ int main(int argc, char** argv){
 
     ifstream input(fileName);
 
-    int maxSpent, ammountIslands;
-    int** islandsInfo;
+    int moneyToSpend, ammountIslands;
+    int *costs, *points;
 
     if(input.is_open()){
 
-        input >> maxSpent >> ammountIslands;
+        input >> moneyToSpend >> ammountIslands;
 
-        islandsInfo = new int*[ammountIslands];
+        costs = new int[ammountIslands];
+        points = new int[ammountIslands];
+        
         for(int i = 0; i < ammountIslands; i++){
-            islandsInfo[i] = new int[2];
-        }
-        for(int i = 0; i < ammountIslands; i++){
-            input >> islandsInfo[i][0] >> islandsInfo[i][1];
+            input >> costs[i] >> points[i];
         }
     }
     else{
