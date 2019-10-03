@@ -2,6 +2,48 @@
 
 Trip::Trip(int m, int ai, Island i[]) : _moneyToSpend(m), _ammountIslands(ai), _islands(i){}
 
+//Finds maximum points and the duration from a trip where it's allowed to repeat islands
+void Trip::MaxPointsRepeatingIslands(){
+    auto sortedIslands = this->sortByValue();
+    int m = this->_moneyToSpend, i = 0, maxPoints = 0, days = 0;
+
+    while(m > 0 && i < this->_ammountIslands){
+        if(sortedIslands[i].getCost() <= m){
+            int aux = m / sortedIslands[i].getCost();
+
+            m = m % sortedIslands[i].getCost();
+            days += aux;
+            maxPoints += (aux * sortedIslands[i].getPoints());
+        }
+        else{
+            i++;
+        }
+    }
+    
+    cout << maxPoints << " " << days << endl;
+}
+
+//Sorts islands by their value in descending order
+Island* Trip::sortByValue(){
+    auto sortedIslands = this->_islands;
+
+    mergeSort(sortedIslands, 0, this->_ammountIslands-1);
+
+    return sortedIslands;
+}
+
+//merge sort implementation to order the array of islands
+void Trip::mergeSort(Island is[], int left, int right){ 
+    if (left < right){ 
+        int middle = left+(right-left)/2; 
+  
+        mergeSort(is, left, middle); 
+        mergeSort(is, middle+1, right); 
+  
+        merge(is, left, middle, right); 
+    } 
+}
+
 void Trip::merge(Island is[], int left, int middle, int right){ 
     int i, j, k; 
     int n1 = middle - left + 1; 
@@ -44,49 +86,7 @@ void Trip::merge(Island is[], int left, int middle, int right){
     }    
 }
 
-void Trip::mergeSort(Island is[], int left, int right){ 
-    if (left < right){ 
-        int middle = left+(right-left)/2; 
-  
-        mergeSort(is, left, middle); 
-        mergeSort(is, middle+1, right); 
-  
-        merge(is, left, middle, right); 
-    } 
-}
-
-Island* Trip::sortByValue(){
-    auto sortedIslands = this->_islands;
-
-    mergeSort(sortedIslands, 0, this->_ammountIslands-1);
-
-    return sortedIslands;
-}
-
-void Trip::MaxPointsRepeatingIslands(){
-    auto sortedIslands = this->sortByValue();
-    int m = this->_moneyToSpend, i = 0, maxPoints = 0, days = 0;
-
-    while(m > 0 && i < this->_ammountIslands){
-        if(sortedIslands[i].getCost() <= m){
-            int aux = m / sortedIslands[i].getCost();
-
-            m = m % sortedIslands[i].getCost();
-            days += aux;
-            maxPoints += (aux * sortedIslands[i].getPoints());
-        }
-        else{
-            i++;
-        }
-    }
-    
-    cout << maxPoints << " " << days << endl;
-}
-
-int Trip::max(int a, int b){
-    return (a > b) ? a : b;
-}
-
+//Finds maximum points and the duration from a trip where it's not allowed to repeat islands
 void Trip::MaxPointsWithoutRepeating(){
     int m = this->_moneyToSpend, ai = this->_ammountIslands;
     int i, j, maxPoints, days = 0;
@@ -123,4 +123,8 @@ void Trip::MaxPointsWithoutRepeating(){
     }
 
     cout << maxPoints << " " << days << endl;
+}
+
+int Trip::max(int a, int b){
+    return (a > b) ? a : b;
 }

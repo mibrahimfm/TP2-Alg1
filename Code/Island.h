@@ -6,7 +6,7 @@ private:
     int cost, points;
     float value;
 public:
-    Island(){};
+    Island(){}; //Default constructor to allow creation of empty variables of type Island
     Island(int, int);
     float FindValue();
     int getCost();
