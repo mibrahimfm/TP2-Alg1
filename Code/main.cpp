@@ -1,10 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include "Trip.h"
 
 using std::ifstream;
 using std::string;
 using std::cout;
+using std::endl;
 
 int main(int argc, char** argv){
     string fileName = argv[1];
@@ -24,6 +26,8 @@ int main(int argc, char** argv){
         for(int i = 0; i < ammountIslands; i++){
             input >> costs[i] >> points[i];
         }
+
+        Trip::MaxPointsWithoutRepeating(moneyToSpend, ammountIslands, costs, points);
     }
     else{
         cout << "Erro ao abrir o arquivo " << fileName;

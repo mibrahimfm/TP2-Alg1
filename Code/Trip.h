@@ -1,15 +1,13 @@
 #ifndef TRIP_H
 #define TRIP_H
 
+#include <iostream>
+
 class Trip{
-private:
-    int moneyToSpend, ammountIslands;
-    int *costs, *points;
 public:
-    Trip(int, int, int*, int*);
-    int MaxPointsRepeatingIslands();
-    int MaxPointsWithoutRepeating();
-    int Max(int, int);
+    static int MaxPointsRepeatingIslands();
+    static void MaxPointsWithoutRepeating(int, int, int[], int[]);
+    static int Max(int, int);
 };
 
 
