@@ -10,10 +10,12 @@ private:
     Island* islands;
 public:
     Trip(int, int, Island[]);
-    int MaxPointsRepeatingIslands();
+    void MaxPointsRepeatingIslands();
     void MaxPointsWithoutRepeating();
     int Max(int, int);
-    float* FindValues(int[], int[], int);
+    Island* SortByValue();
+    void MergeSort(Island[], int, int);
+    void Merge(Island[], int, int, int);
 };
 
 

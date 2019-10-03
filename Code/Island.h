@@ -3,13 +3,15 @@
 
 class Island{
 private:
-
-public:
     int cost, points;
     float value;
+public:
     Island(){};
     Island(int, int);
     float FindValue();
+    int getCost();
+    int getPoints();
+    float getValue();
 };
 
 

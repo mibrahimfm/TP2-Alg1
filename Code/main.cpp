@@ -18,7 +18,6 @@ int main(int argc, char** argv){
     int *costs, *points;
 
     if(input.is_open()){
-
         input >> moneyToSpend >> ammountIslands;
 
         costs = new int[ammountIslands];
@@ -34,7 +33,9 @@ int main(int argc, char** argv){
         }
 
         Trip t(moneyToSpend, ammountIslands, islands);
+        t.MaxPointsRepeatingIslands();
         t.MaxPointsWithoutRepeating();
+
     }
     else{
         cout << "Erro ao abrir o arquivo " << fileName;
