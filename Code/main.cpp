@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string.h>
 #include "Trip.h"
+#include "Island.h"
 
 using std::ifstream;
 using std::string;
@@ -27,7 +28,13 @@ int main(int argc, char** argv){
             input >> costs[i] >> points[i];
         }
 
-        Trip::MaxPointsWithoutRepeating(moneyToSpend, ammountIslands, costs, points);
+        Island islands[ammountIslands];
+        for(int i = 0; i < ammountIslands; i++){
+            islands[i] = Island(costs[i], points[i]);
+        }
+
+        Trip t(moneyToSpend, ammountIslands, islands);
+        t.MaxPointsWithoutRepeating();
     }
     else{
         cout << "Erro ao abrir o arquivo " << fileName;

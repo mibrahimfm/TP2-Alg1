@@ -2,12 +2,18 @@
 #define TRIP_H
 
 #include <iostream>
+#include "Island.h"
 
 class Trip{
+private:
+    int moneyToSpend, ammountIslands;
+    Island* islands;
 public:
-    static int MaxPointsRepeatingIslands();
-    static void MaxPointsWithoutRepeating(int, int, int[], int[]);
-    static int Max(int, int);
+    Trip(int, int, Island[]);
+    int MaxPointsRepeatingIslands();
+    void MaxPointsWithoutRepeating();
+    int Max(int, int);
+    float* FindValues(int[], int[], int);
 };
 
 

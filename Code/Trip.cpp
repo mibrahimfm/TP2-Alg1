@@ -1,10 +1,14 @@
 #include "Trip.h"
 
+Trip::Trip(int m, int ai, Island i[]) : moneyToSpend(m), ammountIslands(ai), islands(i){}
+
 int Trip::MaxPointsRepeatingIslands(){
 
 }
 
-void Trip::MaxPointsWithoutRepeating(int m, int ai, int costs[], int points[]){
+
+void Trip::MaxPointsWithoutRepeating(){
+    int m = this->moneyToSpend, ai = this->ammountIslands;
     int i, j, maxPoints, days = 0;
     int values[ai+1][m+1];
 
@@ -13,8 +17,8 @@ void Trip::MaxPointsWithoutRepeating(int m, int ai, int costs[], int points[]){
             if(i==0 || j==0){
                 values[i][j] = 0;
             }
-            else if(costs[i-1] <= j){
-                values[i][j] = Trip::Max(points[i-1] + values[i-1][j-costs[i-1]], values[i-1][j]);
+            else if(this->islands[i-1].cost <= j){
+                values[i][j] = Trip::Max(this->islands[i-1].points + values[i-1][j-this->islands[i-1].cost], values[i-1][j]);
             }
             else{
                 values[i][j] = values[i-1][j];
@@ -30,8 +34,8 @@ void Trip::MaxPointsWithoutRepeating(int m, int ai, int costs[], int points[]){
             continue;
         else{
             days++;
-            maxPoints -= points[i-1];
-            j -= costs[i-1];
+            maxPoints -= islands[i-1].points;
+            j -= islands[i-1].cost;
         }
     }
 
