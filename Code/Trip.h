@@ -4,18 +4,21 @@
 #include <iostream>
 #include "Island.h"
 
+using std::cout;
+using std::endl;
+
 class Trip{
 private:
-    int moneyToSpend, ammountIslands;
-    Island* islands;
+    int _moneyToSpend, _ammountIslands;
+    Island* _islands;
+    int max(int, int);
+    Island* sortByValue();
+    void mergeSort(Island[], int, int);
+    void merge(Island[], int, int, int);
 public:
     Trip(int, int, Island[]);
     void MaxPointsRepeatingIslands();
     void MaxPointsWithoutRepeating();
-    int Max(int, int);
-    Island* SortByValue();
-    void MergeSort(Island[], int, int);
-    void Merge(Island[], int, int, int);
 };
 
 

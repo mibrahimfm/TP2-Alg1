@@ -38,6 +38,6 @@ int main(int argc, char** argv){
 
     }
     else{
-        cout << "Erro ao abrir o arquivo " << fileName;
+        cout << "Erro ao abrir o arquivo " << fileName << endl;;
     }
 }
