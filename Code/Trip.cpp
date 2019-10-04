@@ -66,6 +66,18 @@ void Trip::merge(Island is[], int left, int middle, int right){
             is[k] = L[i]; 
             i++; 
         } 
+        //In case of the same value, the better island is the one which will leave the least money remaining
+        //as the best scenario is to spend the most money in the best value
+        else if(L[i].getValue() == R[j].getValue()){
+            if(this->_moneyToSpend % L[i].getCost() <= this->_moneyToSpend % R[j].getCost()){
+                is[k] = L[i]; 
+                i++;
+            }
+            else{
+                is[k] = R[j]; 
+                j++; 
+            }
+        }
         else{ 
             is[k] = R[j]; 
             j++; 
