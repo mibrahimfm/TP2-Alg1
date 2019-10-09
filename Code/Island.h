@@ -3,8 +3,8 @@
 
 class Island{
 private:
-    int cost, points;
-    float value;
+    int _cost, _points;
+    float _value;
 public:
     Island(){}; //Default constructor to allow creation of empty variables of type Island
     Island(int, int);
