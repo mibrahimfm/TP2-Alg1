@@ -1,13 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include <chrono>
 #include "Trip.h"
 #include "Island.h"
 
+using namespace std::chrono;
 using std::ifstream;
 using std::string;
 using std::cout;
 using std::endl;
+
 
 int main(int argc, char** argv){
     string fileName = argv[1];
@@ -16,6 +19,8 @@ int main(int argc, char** argv){
 
     int moneyToSpend, ammountIslands;
     int *costs, *points;
+
+    auto start = high_resolution_clock::now();
 
     if(input.is_open()){
         input >> moneyToSpend >> ammountIslands;
@@ -41,4 +46,11 @@ int main(int argc, char** argv){
     else{
         cout << "Erro ao abrir o arquivo " << fileName << endl;;
     }
+
+    auto end = high_resolution_clock::now();
+
+    auto duration = duration_cast<microseconds>(end - start); 
+
+    cout << "Time taken by function: "
+         << duration.count() << " microseconds" << endl; 
 }
