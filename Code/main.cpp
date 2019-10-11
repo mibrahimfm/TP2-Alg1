@@ -20,7 +20,6 @@ int main(int argc, char** argv){
     int moneyToSpend, ammountIslands;
     int *costs, *points;
 
-    auto start = high_resolution_clock::now();
 
     if(input.is_open()){
         input >> moneyToSpend >> ammountIslands;
@@ -39,18 +38,28 @@ int main(int argc, char** argv){
         }
 
         Trip t(moneyToSpend, ammountIslands, islands);
+        auto startRep = high_resolution_clock::now();
         t.MaxPointsRepeatingIslands();
-        t.MaxPointsWithoutRepeating();
+        auto endRep = high_resolution_clock::now();
 
+        auto duration = duration_cast<microseconds>(endRep - startRep); 
+
+        cout << "Time taken by function: "
+            << duration.count() << " microseconds" << endl;
+
+        auto start = high_resolution_clock::now();
+       
+        t.MaxPointsWithoutRepeating();
+        auto end = high_resolution_clock::now();
+
+        auto duration = duration_cast<microseconds>(end - start); 
+
+        cout << "Time taken by function: "
+            << duration.count() << " microseconds" << endl;
     }
     else{
         cout << "Erro ao abrir o arquivo " << fileName << endl;;
     }
 
-    auto end = high_resolution_clock::now();
-
-    auto duration = duration_cast<microseconds>(end - start); 
-
-    cout << "Time taken by function: "
-         << duration.count() << " microseconds" << endl; 
+     
 }
