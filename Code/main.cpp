@@ -1,11 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
-#include <chrono>
+//#include <chrono>
 #include "Trip.h"
 #include "Island.h"
 
-using namespace std::chrono;
+//using namespace std::chrono;
 using std::ifstream;
 using std::string;
 using std::cout;
@@ -41,25 +41,9 @@ int main(int argc, char** argv){
             Trip t(moneyToSpend, ammountIslands, islands);
 
 
-            auto startWithRep = high_resolution_clock::now();
-
             t.MaxPointsRepeatingIslands();
-
-            auto endWithRep = high_resolution_clock::now();
-            auto durationWithRep = duration_cast<microseconds>(endWithRep - startWithRep); 
-
-            cout << "Time taken by function MaxPointsRepeatingIslands: "
-                << durationWithRep.count() << " microseconds" << endl;
-
-            auto start = high_resolution_clock::now();
         
-            t.MaxPointsWithoutRepeating();
-            
-            auto end = high_resolution_clock::now();
-            auto duration = duration_cast<microseconds>(end - start); 
-
-            cout << "Time taken by function MaxPointsWithoutRepeating: "
-                << duration.count() << " microseconds" << endl;
+            t.MaxPointsWithoutRepeating();            
         }
         else{
             cout << "Couldn't open file " << fileName << 
